@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Peliculas {
   List<Pelicula> items = new List();
 
@@ -55,11 +57,19 @@ class Pelicula {
     originalTitle = json['original_title'];
     overview = json['overview'];
     popularity = json['popularity'] / 1;
-    posterPath = json['posterPath'];
+    posterPath = json['poster_path'];
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
     voteAverage = json['vote_average'] / 1; // transform data to double
     voteCount = json['vote_count'];
+  }
+
+  getPosterImg() {
+    if (posterPath == null) {
+      return 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-data-1995355-1686641.png';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
+    }
   }
 }

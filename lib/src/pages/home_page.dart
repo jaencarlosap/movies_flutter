@@ -32,10 +32,18 @@ class HomaPage extends StatelessWidget {
   }
 
   Widget _swiperTarjetas() {
-    peliculasProvider.getEnCines();
-
-    return CardSwiper(
-      peliculas: [1, 2, 3, 4, 5],
+    return FutureBuilder(
+      future: peliculasProvider.getEnCines(),
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if (snapshot.hasData) {
+          return CardSwiper(peliculas: snapshot.data);
+        } else {
+          return Container(
+            height: 400.0,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
     );
   }
 }
