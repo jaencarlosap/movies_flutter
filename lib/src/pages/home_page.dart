@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:movies/src/widgets/card_swiper_widget.dart';
+
+import 'package:movies/src/providers/peliculas_provider.dart';
 
 class HomaPage extends StatelessWidget {
+  final peliculasProvider = PelicuasProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,21 +32,10 @@ class HomaPage extends StatelessWidget {
   }
 
   Widget _swiperTarjetas() {
-    return Container(
-      padding: EdgeInsets.only(top: 10.0),
-      width: double.infinity,
-      height: 300.0,
-      child: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return Image.network(
-            "http://via.placeholder.com/350x150",
-            fit: BoxFit.fill,
-          );
-        },
-        itemCount: 3,
-        itemWidth: 200.0,
-        layout: SwiperLayout.STACK,
-      ),
+    peliculasProvider.getEnCines();
+
+    return CardSwiper(
+      peliculas: [1, 2, 3, 4, 5],
     );
   }
 }
