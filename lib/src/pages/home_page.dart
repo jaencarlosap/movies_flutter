@@ -10,6 +10,8 @@ class HomaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    peliculasProvider.getPopulares();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -63,14 +65,16 @@ class HomaPage extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
-          FutureBuilder(
-            future: peliculasProvider.getPopulares(),
+          StreamBuilder(
+            stream: peliculasProvider.popularesStream,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                return MovieHorizontal(peliculas: snapshot.data);
+                return MovieHorizontal(
+                  peliculas: snapshot.data,
+                  nextPage: peliculasProvider.getPopulares,
+                );
               } else {
                 return Container(
-                  height: 400.0,
                   child: Center(child: CircularProgressIndicator()),
                 );
               }
