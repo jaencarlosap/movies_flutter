@@ -6,7 +6,7 @@ import 'package:movies/src/widgets/movie_horizontal.dart';
 import 'package:movies/src/providers/peliculas_provider.dart';
 
 class HomaPage extends StatelessWidget {
-  final peliculasProvider = PelicuasProvider();
+  final peliculasProvider = PeliculasProvider();
 
   @override
   Widget build(BuildContext context) {
