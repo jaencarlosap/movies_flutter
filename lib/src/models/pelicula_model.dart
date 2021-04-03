@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-
 class Peliculas {
-  List<Pelicula> items = new List();
+  List<Pelicula> items = [];
 
   Peliculas();
 
@@ -9,7 +7,7 @@ class Peliculas {
     if (jsonList == null) return;
 
     for (var item in jsonList) {
-      final pelicula = new Pelicula.fromJsonMapn(item);
+      final pelicula = new Pelicula.fromJsonMap(item);
       items.add(pelicula);
     }
   }
@@ -48,7 +46,7 @@ class Pelicula {
     this.voteCount,
   });
 
-  Pelicula.fromJsonMapn(Map<String, dynamic> json) {
+  Pelicula.fromJsonMap(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'].cast<int>();
